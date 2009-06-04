@@ -35,15 +35,15 @@ class Members < Application
     if @member.save
       
       #Merb.run_later do
-        mail = Merb::Mailer.new(:to => @member.email, :from => 'info@oneclickor.gs', :subject => 'Your password', :text => <<-END)
+        mail = Merb::Mailer.new(:to => @member.email, :from => 'info@manage.rewiredstate.org', :subject => 'Your password', :text => <<-END)
           Dear #{@member.name || 'member'},
 
-          you are now member of OCO. Your password is
+          You are now member of Rewired State. Your password is
           #{password}
 
           Thanks
 
-          oneclickor.gs
+          RS
           END
         mail.deliver!
       #end

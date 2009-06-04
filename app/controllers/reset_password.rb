@@ -10,15 +10,15 @@ class ResetPassword < Application
         new_password = m.new_password!
         if m.save
           run_later do
-            mail = Merb::Mailer.new(:to => m.email, :from => 'info@oneclickor.gs', :subject => 'Your password', :text => <<-END)
+            mail = Merb::Mailer.new(:to => m.email, :from => 'info@manage.rewiredstate.org', :subject => 'Your password', :text => <<-END)
             Dear #{m.name || 'member'},
 
-            your password has been reset to:
+            Your password has been reset to:
             #{new_password}
 
             Thanks
 
-            oneclickor.gs
+            RS
             END
             mail.deliver!          
           end

@@ -93,7 +93,7 @@ class Proposal
   def send_email
     Merb.run_later do
       Member.all.each do |m|
-        m = Merb::Mailer.new(:to => m.email, :from => 'info@oneclickor.gs', :subject => 'new one click proposal', :text => <<-END)
+        m = Merb::Mailer.new(:to => m.email, :from => 'info@manage.rewiredstate.org', :subject => 'New Rewired State proposal', :text => <<-END)
         Dear #{m.name || 'member'},
         
         a new proposal has been created.
@@ -102,11 +102,11 @@ class Proposal
 
         #{self.description}
         
-        Please visit http://staging.oneclickor.gs/proposals to vote on it.
+        Please visit http://manage.rewiredstate.org/proposals to vote on it.
         
         Thanks
         
-        oneclickor.gs
+        RS
         END
         m.deliver!
       end
