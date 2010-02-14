@@ -36,4 +36,3 @@ end
 
 # use double quotes for generated HTML/XML attributes
 Merb::Plugins.config[:haml][:attr_wrapper] = '"'
- 
