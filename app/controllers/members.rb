@@ -1,6 +1,6 @@
 class Members < Application
   include AsyncJobs
-  # provides :xml, :yaml, :js
+  provides :xml, :yaml, :json
 
   def index
     @members = Member.all.active
