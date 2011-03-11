@@ -77,6 +77,14 @@ div.clear {
     margin: 0;
     padding: 18px 12px;
     text-shadow: white -1px -1px 2px; }
+  #overlay ul, #overlay ol {
+    margin: 0 0 1em 2em; }
+    #overlay ul li, #overlay ol li {
+      line-height: 1.6em; }
+  #overlay .warnings {
+    margin: 18px 12px;
+    border-top: 1px solid #666666;
+    border-bottom: 1px solid #666666; }
 
 #overlay.proposed {
   background: #afe0bc;
