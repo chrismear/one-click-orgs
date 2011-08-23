@@ -11,14 +11,16 @@ test: &test
   <<:       *defaults
   database: one_click_test
   encoding: utf8
-  username: 
+  username: root
+  password: 
+  host:     localhost
  
 production:
   adapter:  mysql2
   database: one_click_production
   encoding: utf8
-  username: oneclick
-  password: themis
+  username: root
+  password: 
   host:     localhost  
 
 cucumber:
