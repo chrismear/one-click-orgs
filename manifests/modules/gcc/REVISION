@@ -1,0 +1,4 @@
+module: puppetlabs/gcc
+version: 0.0.3
+url: file:///Users/chris/.puppet/var/puppet-module/cache/http_forge_puppetlabs_com-75a31f1d6f1ef6eb63b4479b3512ee1508209a7f/puppetlabs-gcc-0.0.3.tar.gz
+installed: 2011-08-23 12:06:56 +0100

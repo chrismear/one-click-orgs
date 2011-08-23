@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+  DocumentRoot /vagrant/public
+  RackEnv development
+  <Directory /vagrant/public>
+     AllowOverride all
+     Options -MultiViews
+  </Directory>
+</VirtualHost>
