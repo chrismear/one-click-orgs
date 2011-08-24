@@ -18,3 +18,4 @@ tmp/restart.txt
 .sass-cache
 bin
 public/assets
+.vagrant
