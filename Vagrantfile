@@ -1,6 +1,6 @@
 Vagrant::Config.run do |config|
-  config.vm.box = "oco-dev"
-  config.vm.box_url = "http://oco-vms.s3.amazonaws.com/oco-dev.box"
+  config.vm.box = "debian-squeeze-minimal-"
+  config.vm.box_url = "http://oco-vms.s3.amazonaws.com/debian-squeeze-minimal-uk.box"
   
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "manifests"
