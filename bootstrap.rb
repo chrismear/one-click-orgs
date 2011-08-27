@@ -13,7 +13,7 @@ def save_https_resource(url, destination)
   request = Net::HTTP::Get.new(uri.request_uri)
   response = http.request(request)
   
-  raise FetchError, "Error response " unless response.is_a?(HTTPSuccess)
+  raise FetchError, "Error response " unless response.is_a?(Net::HTTPSuccess)
   
   File.open(destination, 'w') do |file|
     file << response.body
