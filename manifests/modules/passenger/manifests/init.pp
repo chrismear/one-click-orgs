@@ -10,6 +10,10 @@ class passenger {
     logoutput => true,
   }
   
+  package {'passenger-compilation-dependencies':
+    name => 'libcurl4-openssl-dev',
+  }
+  
   exec {'install_passenger_gem':
     creates => '/home/vagrant/.rbenv/versions/1.9.2-p290/bin/passenger-install-apache2-module',
     command => "gem install -v $version passenger",
@@ -18,6 +22,6 @@ class passenger {
   exec {'compile-passenger':
     command => 'passenger-install-apache2-module -a',
     creates => $passenger::params::mod_passenger_location,
-    require => Exec['install_passenger_gem'],
+    require => [Exec['install_passenger_gem'], Package['passenger-compilation-dependencies']],
   }
 }
