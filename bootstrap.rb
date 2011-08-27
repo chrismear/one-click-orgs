@@ -46,12 +46,43 @@ rescue => e
 end
 msg "Done."
 
+Dir.chdir(INSTALL_DIRECTORY)
+
 # TODO On Debian, check for vagrant in /var/lib/gems/{1.8,1.9.1}/bin
+GEM_BIN_PATHS = ['/usr/local/bin', '/usr/bin', '/bin', '/var/lib/gems/1.9.1/bin', '/var/lib/gems/1.8/bin']
+vagrant = nil
+
+msg "Checking for Vagrant install..."
+# Try system path
+begin
+  succeeded = system("vagrant version")
+  raise RuntimeError unless succeeded
+  vagrant = "vagrant"
+rescue => e
+end
+
+# Try our list of paths
+unless vagrant
+  GEM_BIN_PATHS.each do |bin_path|
+    begin
+      succeeded = system("#{bin_path}/vagrant version")
+      raise RuntimeError unless succeeded
+      vagrant = "#{bin_path}/vagrant"
+    rescue => e
+    end
+    break if vagrant
+  end
+end
+
+unless vagrant
+  msg "Could not find Vagrant."
+  exit(false)
+end
+msg "Done."
 
 msg "Bootstrapping VM..."
 begin
-  Dir.chdir(INSTALL_DIRECTORY)
-  succeeded = system("vagrant up")
+  succeeded = system("#{vagrant} up")
   raise RuntimeError unless succeeded
 rescue => e
   msg "Error bootstrapping VM: #{e.message}"
@@ -61,7 +92,7 @@ msg "Done."
 
 msg "Provisioning VM with development environment (this may take a while)..."
 begin
-  succeeded = system("vagrant provision")
+  succeeded = system("#{vagrant} provision")
   raise RuntimeError unless succeeded
 rescue => e
   msg "Error provisioning VM: #{e.message}"
