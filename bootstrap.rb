@@ -92,7 +92,7 @@ msg "Done."
 
 msg "Provisioning VM with development environment (this may take a while)..."
 begin
-  succeeded = system("#{vagrant} provision")
+  succeeded = system("#{vagrant} reload")
   raise RuntimeError unless succeeded
 rescue => e
   msg "Error provisioning VM: #{e.message}"
