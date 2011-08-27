@@ -15,7 +15,7 @@ class passenger {
   }
   
   exec {'install_passenger_gem':
-    creates => '/home/vagrant/.rbenv/versions/1.9.2-p290/bin/passenger-install-apache2-module',
+    creates => "/home/vagrant/.rbenv/versions/1.9.2-p290/lib/ruby/gems/1.9.1/gems/passenger-$version/bin/passenger-install-apache2-module",
     command => "gem install -v $version passenger",
   }
 
