@@ -1,5 +1,6 @@
 class passenger {
   include passenger::params
+  include apache
   require ruby
   require gcc
   require apache::dev
@@ -23,5 +24,6 @@ class passenger {
     command => 'passenger-install-apache2-module -a',
     creates => $passenger::params::mod_passenger_location,
     require => [Exec['install_passenger_gem'], Package['passenger-compilation-dependencies']],
+    notify => Service['httpd'],
   }
 }
