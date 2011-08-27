@@ -30,7 +30,6 @@ INSTALL_DIRECTORY = ARGV[0] || 'one-click-orgs'
 
 puts "Bootstrapping into #{INSTALL_DIRECTORY}."
 
-# TODO Gracefully fail if there are errors.
 puts "Fetching bootstrap VM config..."
 begin
   Dir.mkdir(INSTALL_DIRECTORY)
@@ -43,7 +42,8 @@ rescue => e
 end
 puts "Done."
 
-# TODO Gracefully fail if there are errors.
+# TODO On Debian, check for vagrant in /var/lib/gems/{1.8,1.9.1}/bin
+
 puts "Bootstrapping VM..."
 begin
   Dir.chdir(INSTALL_DIRECTORY)
@@ -55,7 +55,6 @@ rescue => e
 end
 puts "Done."
 
-# TODO Gracefully fail if there are errors.
 puts "Provisioning VM with development environment (this may take a while)..."
 begin
   succeeded = system("vagrant provision")
