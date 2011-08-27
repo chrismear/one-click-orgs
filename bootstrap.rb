@@ -5,6 +5,10 @@ require 'uri'
 
 class FetchError < RuntimeError; end
 
+def msg(message)
+  puts "[oco-bootstrap] #{message}"
+end
+
 def save_https_resource(url, destination)
   uri = URI.parse(url)
   http = Net::HTTP.new(uri.host, uri.port)
@@ -28,39 +32,39 @@ BOOTSTRAP_BASE_URL = "https://raw.github.com/chrismear/one-click-orgs/bootstrap"
 
 INSTALL_DIRECTORY = ARGV[0] || 'one-click-orgs'
 
-puts "Bootstrapping into #{INSTALL_DIRECTORY}."
+msg "Bootstrapping into #{INSTALL_DIRECTORY}."
 
-puts "Fetching bootstrap VM config..."
+msg "Fetching bootstrap VM config..."
 begin
   Dir.mkdir(INSTALL_DIRECTORY)
   Dir.mkdir(File.join(INSTALL_DIRECTORY, 'manifests'))
   save_https_resource(BOOTSTRAP_BASE_URL + '/Vagrantfile', File.join(INSTALL_DIRECTORY, 'Vagrantfile'))
   save_https_resource(BOOTSTRAP_BASE_URL + '/manifests/oco_bootstrap.pp', File.join(INSTALL_DIRECTORY, 'manifests', 'oco_bootstrap.pp'))
 rescue => e
-  puts "Error fetching config: #{e.message}"
+  msg "Error fetching config: #{e.message}"
   exit(false)
 end
-puts "Done."
+msg "Done."
 
 # TODO On Debian, check for vagrant in /var/lib/gems/{1.8,1.9.1}/bin
 
-puts "Bootstrapping VM..."
+msg "Bootstrapping VM..."
 begin
   Dir.chdir(INSTALL_DIRECTORY)
   succeeded = system("vagrant up")
   raise RuntimeError unless succeeded
 rescue => e
-  puts "Error bootstrapping VM: #{e.message}"
+  msg "Error bootstrapping VM: #{e.message}"
   exit(false)
 end
-puts "Done."
+msg "Done."
 
-puts "Provisioning VM with development environment (this may take a while)..."
+msg "Provisioning VM with development environment (this may take a while)..."
 begin
   succeeded = system("vagrant provision")
   raise RuntimeError unless succeeded
 rescue => e
-  puts "Error provisioning VM: #{e.message}"
+  msg "Error provisioning VM: #{e.message}"
   exit(false)
 end
-puts "Done."
+msg "Done."
