@@ -34,30 +34,6 @@ INSTALL_DIRECTORY = ARGV[0] || 'one-click-orgs'
 
 msg "Bootstrapping into #{INSTALL_DIRECTORY}."
 
-msg "Installing Vagrant..."
-install_succeeded = system "gem install -v 0.8.7 vagrant"
-unless install_succeeded
-  install_succeeded = system "sudo gem install -v 0.8.7 vagrant"
-end
-unless install_succeeded
-  msg "Error installing Vagrant."
-  exit(false)
-end
-
-msg "Fetching bootstrap VM config..."
-begin
-  Dir.mkdir(INSTALL_DIRECTORY)
-  Dir.mkdir(File.join(INSTALL_DIRECTORY, 'manifests'))
-  save_https_resource(BOOTSTRAP_BASE_URL + '/Vagrantfile', File.join(INSTALL_DIRECTORY, 'Vagrantfile'))
-  save_https_resource(BOOTSTRAP_BASE_URL + '/manifests/oco_bootstrap.pp', File.join(INSTALL_DIRECTORY, 'manifests', 'oco_bootstrap.pp'))
-rescue => e
-  msg "Error fetching config: #{e.message}"
-  exit(false)
-end
-msg "Done."
-
-Dir.chdir(INSTALL_DIRECTORY)
-
 # TODO On Debian, check for vagrant in /var/lib/gems/{1.8,1.9.1}/bin
 GEM_BIN_PATHS = ['/usr/local/bin', '/usr/bin', '/bin', '/var/lib/gems/1.9.1/bin', '/var/lib/gems/1.8/bin']
 vagrant = nil
@@ -85,10 +61,31 @@ unless vagrant
 end
 
 unless vagrant
-  msg "Could not find Vagrant."
+  msg "Vagrant not found. Installing Vagrant..."
+  install_succeeded = system "gem install -v 0.8.7 vagrant"
+  unless install_succeeded
+    install_succeeded = system "sudo gem install -v 0.8.7 vagrant"
+  end
+  unless install_succeeded
+    msg "Error installing Vagrant."
+    exit(false)
+  end
+end
+msg "Done."
+
+msg "Fetching bootstrap VM config..."
+begin
+  Dir.mkdir(INSTALL_DIRECTORY)
+  Dir.mkdir(File.join(INSTALL_DIRECTORY, 'manifests'))
+  save_https_resource(BOOTSTRAP_BASE_URL + '/Vagrantfile', File.join(INSTALL_DIRECTORY, 'Vagrantfile'))
+  save_https_resource(BOOTSTRAP_BASE_URL + '/manifests/oco_bootstrap.pp', File.join(INSTALL_DIRECTORY, 'manifests', 'oco_bootstrap.pp'))
+rescue => e
+  msg "Error fetching config: #{e.message}"
   exit(false)
 end
 msg "Done."
+
+Dir.chdir(INSTALL_DIRECTORY)
 
 msg "Bootstrapping VM..."
 begin
