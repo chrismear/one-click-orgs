@@ -43,7 +43,7 @@ msg "Checking for Vagrant install..."
 begin
   succeeded = system("vagrant version")
   raise RuntimeError unless succeeded
-  vagrant = "vagrant"
+  vagrant = "vagrant _0.7.8_"
 rescue => e
 end
 
@@ -51,9 +51,9 @@ end
 unless vagrant
   GEM_BIN_PATHS.each do |bin_path|
     begin
-      succeeded = system("#{bin_path}/vagrant version")
+      succeeded = system("#{bin_path}/vagrant _0.7.8_ version")
       raise RuntimeError unless succeeded
-      vagrant = "#{bin_path}/vagrant"
+      vagrant = "#{bin_path}/vagrant _0.7.8_"
     rescue => e
     end
     break if vagrant
