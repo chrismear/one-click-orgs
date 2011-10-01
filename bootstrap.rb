@@ -62,9 +62,9 @@ end
 
 unless vagrant
   msg "Vagrant not found. Installing Vagrant..."
-  install_succeeded = system "gem install -v 0.8.7 vagrant"
+  install_succeeded = system "gem install -v 0.7.8 vagrant"
   unless install_succeeded
-    install_succeeded = system "sudo gem install -v 0.8.7 vagrant"
+    install_succeeded = system "sudo gem install -v 0.7.8 vagrant"
   end
   unless install_succeeded
     msg "Error installing Vagrant."
