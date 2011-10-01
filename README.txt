@@ -5,4 +5,4 @@ Bootstrap a One Click Orgs development environment.
 3. Download bootstrap.rb to a new directory:
     https://raw.github.com/chrismear/one-click-orgs/bootstrap/bootstrap.rb
 4. From the new directory run:
-       ruby bootstrap.rb
+    ruby bootstrap.rb
