@@ -34,6 +34,16 @@ INSTALL_DIRECTORY = ARGV[0] || 'one-click-orgs'
 
 msg "Bootstrapping into #{INSTALL_DIRECTORY}."
 
+msg "Installing Vagrant..."
+install_succeeded = system "gem install -v 0.8.7 vagrant"
+unless install_succeeded
+  install_succeeded = system "sudo gem install -v 0.8.7 vagrant"
+end
+unless install_succeeded
+  msg "Error installing Vagrant."
+  exit(false)
+end
+
 msg "Fetching bootstrap VM config..."
 begin
   Dir.mkdir(INSTALL_DIRECTORY)
