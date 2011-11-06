@@ -44,6 +44,7 @@ gem "exception_notification_rails3", "~>1.2.0", :require => 'exception_notifier'
 gem "cancan", "~>1.6.7"
 gem "state_machine", "~>1.1.2"
 gem "fastercsv", "~>1.5.4", :platforms => :ruby_18
+gem "oauth-plugin", "0.4.0.rc2"
 
 gem "nokogiri", "~>1.5.9" # Nokogiri => 1.6 has dropped support for Ruby 1.8.
 
