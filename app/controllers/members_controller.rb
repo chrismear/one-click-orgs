@@ -1,3 +1,5 @@
+require 'csv'
+
 class MembersController < ApplicationController
   def index
     case co
