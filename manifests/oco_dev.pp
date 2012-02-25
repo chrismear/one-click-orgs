@@ -23,6 +23,8 @@ class gem_ext_dependencies {
 }
 
 class app_setup {
+  include apt
+  
   include mysql
   include ruby
   
