@@ -23,7 +23,7 @@ class passenger {
   exec {'compile-passenger':
     command => 'passenger-install-apache2-module -a',
     creates => $passenger::params::mod_passenger_location,
-    require => [Exec['install_passenger_gem'], Package['passenger-compilation-dependencies']],
+    require => [Package['httpd'], Exec['install_passenger_gem'], Package['passenger-compilation-dependencies']],
     notify => Service['httpd'],
   }
 }
