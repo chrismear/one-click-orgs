@@ -32,6 +32,8 @@ BOOTSTRAP_BASE_URL = "https://raw.github.com/chrismear/one-click-orgs/bootstrap"
 
 INSTALL_DIRECTORY = ARGV[0] || 'one-click-orgs'
 
+VAGRANT_VERSION = "0.9.7"
+
 msg "Bootstrapping into #{INSTALL_DIRECTORY}."
 
 # TODO On Debian, check for vagrant in /var/lib/gems/{1.8,1.9.1}/bin
@@ -43,7 +45,7 @@ msg "Checking for Vagrant install..."
 begin
   succeeded = system("vagrant version")
   raise RuntimeError unless succeeded
-  vagrant = "vagrant _0.9.7_"
+  vagrant = "vagrant _#{VAGRANT_VERSION}_"
 rescue => e
 end
 
@@ -51,9 +53,9 @@ end
 unless vagrant
   GEM_BIN_PATHS.each do |bin_path|
     begin
-      succeeded = system("#{bin_path}/vagrant _0.9.7_ version")
+      succeeded = system("#{bin_path}/vagrant _#{VAGRANT_VERSION}_ version")
       raise RuntimeError unless succeeded
-      vagrant = "#{bin_path}/vagrant _0.9.7_"
+      vagrant = "#{bin_path}/vagrant _#{VAGRANT_VERSION}_"
     rescue => e
     end
     break if vagrant
@@ -62,9 +64,9 @@ end
 
 unless vagrant
   msg "Vagrant not found. Installing Vagrant..."
-  install_succeeded = system "gem install -v 0.9.7 vagrant"
+  install_succeeded = system "gem install -v #{VAGRANT_VERSION} vagrant"
   unless install_succeeded
-    install_succeeded = system "sudo gem install -v 0.9.7 vagrant"
+    install_succeeded = system "sudo gem install -v #{VAGRANT_VERSION} vagrant"
   end
   unless install_succeeded
     msg "Error installing Vagrant."
