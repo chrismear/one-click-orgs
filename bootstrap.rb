@@ -43,7 +43,7 @@ msg "Checking for Vagrant install..."
 begin
   succeeded = system("vagrant version")
   raise RuntimeError unless succeeded
-  vagrant = "vagrant _0.7.8_"
+  vagrant = "vagrant _0.9.7_"
 rescue => e
 end
 
@@ -51,9 +51,9 @@ end
 unless vagrant
   GEM_BIN_PATHS.each do |bin_path|
     begin
-      succeeded = system("#{bin_path}/vagrant _0.7.8_ version")
+      succeeded = system("#{bin_path}/vagrant _0.9.7_ version")
       raise RuntimeError unless succeeded
-      vagrant = "#{bin_path}/vagrant _0.7.8_"
+      vagrant = "#{bin_path}/vagrant _0.9.7_"
     rescue => e
     end
     break if vagrant
@@ -62,9 +62,9 @@ end
 
 unless vagrant
   msg "Vagrant not found. Installing Vagrant..."
-  install_succeeded = system "gem install -v 0.7.8 vagrant"
+  install_succeeded = system "gem install -v 0.9.7 vagrant"
   unless install_succeeded
-    install_succeeded = system "sudo gem install -v 0.7.8 vagrant"
+    install_succeeded = system "sudo gem install -v 0.9.7 vagrant"
   end
   unless install_succeeded
     msg "Error installing Vagrant."
