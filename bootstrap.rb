@@ -24,9 +24,6 @@ def save_https_resource(url, destination)
   end
 end
 
-# TODO Display usage instructions.
-# TODO Check for presence of dependencies (VirtualBox, Vagrant)
-
 # TODO Replace with canonical URL
 BOOTSTRAP_BASE_URL = "https://raw.github.com/chrismear/one-click-orgs/bootstrap"
 
@@ -34,9 +31,11 @@ INSTALL_DIRECTORY = ARGV[0] || 'one-click-orgs'
 
 VAGRANT_VERSION = "0.9.7"
 
+# TODO Display usage instructions.
+# TODO Check for presence of dependencies (VirtualBox)
+
 msg "Bootstrapping into #{INSTALL_DIRECTORY}."
 
-# TODO On Debian, check for vagrant in /var/lib/gems/{1.8,1.9.1}/bin
 GEM_BIN_PATHS = ['/usr/local/bin', '/usr/bin', '/bin', '/var/lib/gems/1.9.1/bin', '/var/lib/gems/1.8/bin']
 vagrant = nil
 
