@@ -6,6 +6,7 @@ end
 
 def follow_link_in_email
   @email ||= last_email
+  raise @email.body.inspect
   uri = URI.parse(@email.body.match(/(http:\/\/\S*)/)[1])
   subdomain = uri.host.split('.')[0]
   path = uri.path

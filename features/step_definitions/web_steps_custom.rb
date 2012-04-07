@@ -3,7 +3,7 @@ Given /^the subdomain is "([^"]*)"$/ do |subdomain|
 end
 
 When /^the domain is "([^"]*)"$/ do |domain|
-  if Capybara.current_driver == :selenium
+  if Capybara.current_driver == :poltergeist
     Capybara.default_host = "http://#{domain}:#{Capybara.server_port}"
     Capybara.app_host = "http://#{domain}:#{Capybara.server_port}"
   else
@@ -25,4 +25,8 @@ end
 Then /^I should get a "([^"]*)" download with the name of the organisation$/ do |extension|
   @organisation ||= Organisation.last
   page.response_headers['Content-Disposition'].should =~ Regexp.new("filename=\"#{Regexp.escape(@organisation.name)}.*#{Regexp.escape(extension)}\"")
+end
+
+Then /^screenshot the page$/ do
+  page.driver.render(File.join(Rails.root, 'screenshot.png'))
 end

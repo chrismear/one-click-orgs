@@ -75,4 +75,5 @@ group :development, :test do
   gem "database_cleaner"
   gem "launchy"
   gem "selenium-webdriver", "~>2.33.0"
+  gem "poltergeist", "~>0.5.0" # PhantomJS driver for Capybara
 end

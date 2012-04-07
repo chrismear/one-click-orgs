@@ -9,6 +9,9 @@ Coveralls.wear_merged!('rails')
 
 require 'cucumber/rails'
 
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
