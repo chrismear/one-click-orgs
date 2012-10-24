@@ -8,7 +8,8 @@ gem "rails", "3.2.16"
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # gem 'sqlite3-ruby', :require => 'sqlite3'
-gem "mysql2", "~>0.3.11"
+gem "mysql2", "~>0.3.11", :platforms => :ruby
+gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -30,12 +31,14 @@ gem "mysql2", "~>0.3.11"
 group :assets do
   gem 'sass-rails', '~>3.2.5'
   gem 'uglifier', '~>2.3.3'
-  gem 'therubyracer'
+  gem 'therubyracer', :platforms => :ruby
+  gem 'therubyrhino', :platforms => :jruby
 end
 
 gem "jquery-rails", "~>3.0.4"
 gem "haml", "~>4.0.0"
-gem "rdiscount", "~>2.1.6"
+gem "rdiscount", "~>2.1.6", :platforms => :ruby
+gem "maruku", "~>0.6.1", :platforms => :jruby
 gem "pdfkit", "~>0.5.2"
 gem "daemons", "~>1.1.9"
 gem "delayed_job", "~>4.0.0"
@@ -45,6 +48,7 @@ gem "cancan", "~>1.6.7"
 gem "state_machine", "~>1.2.0"
 gem "nokogiri"
 gem 'mail', '~>2.5.4'
+gem "jruby-openssl", :platforms => :jruby
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
@@ -55,6 +59,7 @@ gem 'mail', '~>2.5.4'
 
 group :development do
   gem "capistrano", "~>2.14.2"
+  gem "ffi-ncurses", :platforms => :jruby
   gem "railroad"
   gem "ruby-debug19", :platforms => :ruby_19
   gem 'pry'
