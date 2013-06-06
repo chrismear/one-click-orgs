@@ -25,12 +25,12 @@ create_default_member_classes function in the Organisation model, or via the
 Rails console:
 
 $ ./script/rails console
-> directors = MemberClass.find_or_create_by_name('Director')
+> directors = MemberClass.find_or_create_by(name: 'Director')
 > directors.set_permission(:constitution_proposal, true)
 > directors.set_permission(:membership_proposal, true)
 > directors.set_permission(:freeform_proposal, true)
 > directors.set_permission(:vote, true)
-> members = MemberClass.find_or_create_by_name('Member')
+> members = MemberClass.find_or_create_by(name: 'Member')
 > members.set_permission(:constitution_proposal, false)
 > members.set_permission(:membership_proposal, false)
 > members.set_permission(:freeform_proposal, true)

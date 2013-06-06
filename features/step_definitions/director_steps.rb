@@ -30,7 +30,7 @@ end
 Given(/^we have appointed some initial Directors and Officers$/) do
   # Make a Secretary
   secretary = @organisation.members.make!(:secretary)
-  secretary_office = @organisation.offices.find_or_create_by_title('Secretary')
+  secretary_office = @organisation.offices.find_or_create_by(title: 'Secretary')
   @organisation.officerships.make!(:officer => secretary, :office => secretary_office)
 
   # Make another Director

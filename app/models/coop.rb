@@ -317,18 +317,18 @@ class Coop < Organisation
   # SETUP
 
   def create_default_member_classes
-    members = member_classes.find_or_create_by_name('Member')
+    members = member_classes.find_or_create_by(name: 'Member')
     members.set_permission!(:resolution_proposal, true)
     members.set_permission!(:vote, true)
 
-    founder_members = member_classes.find_or_create_by_name('Founder Member')
+    founder_members = member_classes.find_or_create_by(name: 'Founder Member')
     founder_members.set_permission!(:constitution, true)
     founder_members.set_permission!(:organisation, true)
     founder_members.set_permission!(:founder_member, true)
     founder_members.set_permission!(:directorship, true)
     founder_members.set_permission!(:officership, true)
 
-    directors = member_classes.find_or_create_by_name('Director')
+    directors = member_classes.find_or_create_by(name: 'Director')
     directors.set_permission!(:resolution, true)
     directors.set_permission!(:board_resolution, true)
     directors.set_permission!(:vote, true)
@@ -336,7 +336,7 @@ class Coop < Organisation
     directors.set_permission!(:board_meeting, true)
     directors.set_permission!(:share_account, true)
 
-    secretaries = member_classes.find_or_create_by_name('Secretary')
+    secretaries = member_classes.find_or_create_by(name: 'Secretary')
     secretaries.set_permission!(:resolution, true)
     secretaries.set_permission!(:board_resolution, true)
     secretaries.set_permission!(:meeting, true)
@@ -349,14 +349,14 @@ class Coop < Organisation
     secretaries.set_permission!(:share_account, true)
     secretaries.set_permission!(:share_transaction, true)
 
-    external_directors = member_classes.find_or_create_by_name('External Director')
+    external_directors = member_classes.find_or_create_by(name: 'External Director')
     external_directors.set_permission!(:board_resolution, true)
     external_directors.set_permission!(:board_meeting, true)
   end
 
   def create_default_offices
-    offices.find_or_create_by_title('Secretary')
-    offices.find_or_create_by_title('Chairperson')
+    offices.find_or_create_by(title: 'Secretary')
+    offices.find_or_create_by(title: 'Chairperson')
   end
 
   def set_default_voting_period

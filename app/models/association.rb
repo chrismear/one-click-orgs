@@ -119,14 +119,14 @@ class Association < Organisation
   end
 
   def create_default_member_classes
-    members = member_classes.find_or_create_by_name('Member')
+    members = member_classes.find_or_create_by(:name => 'Member')
     members.set_permission!(:constitution_proposal, true)
     members.set_permission!(:membership_proposal, true)
     members.set_permission!(:freeform_proposal, true)
     members.set_permission!(:vote, true)
     members.save
-
-    founder = member_classes.find_or_create_by_name('Founder')
+    
+    founder = member_classes.find_or_create_by(:name => 'Founder')
     founder.set_permission!(:founder, true)
     founder.set_permission!(:constitution_proposal, true)
     founder.set_permission!(:membership_proposal, true)
@@ -135,7 +135,7 @@ class Association < Organisation
     founder.set_permission!(:vote, true)
     founder.save
 
-    founding_member = member_classes.find_or_create_by_name('Founding Member')
+    founding_member = member_classes.find_or_create_by(:name => 'Founding Member')
     founding_member.set_permission!(:founder, false)
     founding_member.set_permission!(:constitution_proposal, false)
     founding_member.set_permission!(:membership_proposal, false)
