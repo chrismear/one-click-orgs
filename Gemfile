@@ -53,6 +53,9 @@ gem 'mail', '~>2.5.4'
 # and then remove this gem.
 gem 'protected_attributes'
 
+# TODO Replace observers with whatever Rails 4 expects us to use instead.
+gem 'rails-observers'
+
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
