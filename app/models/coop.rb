@@ -39,9 +39,9 @@ class Coop < Organisation
     after_transition :proposed => :active, :do => :destroy_pending_state_member_classes
   end
 
-  scope :active, with_state(:active)
-  scope :proposed, with_state(:proposed)
-  scope :pending, with_state(:pending)
+  scope :active, lambda{with_state(:active)}
+  scope :proposed, lambda{with_state(:proposed)}
+  scope :pending, lambda{with_state(:pending)}
 
   has_many :meetings, :foreign_key => 'organisation_id'
   has_many :board_meetings, :foreign_key => 'organisation_id'

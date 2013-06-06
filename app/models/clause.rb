@@ -24,8 +24,8 @@ class Clause < ActiveRecord::Base
     end
   end
 
-  scope :current, where('ended_at IS NULL')
-
+  scope :current, lambda{where('ended_at IS NULL')}
+  
   before_create :set_started_at
   private
   def set_started_at

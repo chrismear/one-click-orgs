@@ -11,13 +11,13 @@ class Task < ActiveRecord::Base
     where(["(starts_on IS NULL OR starts_on <= :today) AND completed_at IS NULL", {:today => Date.today}])
   }
 
-  scope :shares_related, where(:subject_type => SHARES_RELATED)
-  scope :directors_related, where(:subject_type => DIRECTORS_RELATED)
-  scope :members_related, where(:subject_type => MEMBERS_RELATED)
+  scope :shares_related, lambda{where(:subject_type => SHARES_RELATED)}
+  scope :directors_related, lambda{where(:subject_type => DIRECTORS_RELATED)}
+  scope :members_related, lambda{where(:subject_type => MEMBERS_RELATED)}
 
-  scope :members_or_shares_related, where(:subject_type => (SHARES_RELATED + MEMBERS_RELATED))
+  scope :members_or_shares_related, lambda{where(:subject_type => (SHARES_RELATED + MEMBERS_RELATED))}
 
-  scope :undismissed, where('dismissed_at is null')
+  scope :undismissed, lambda{where('dismissed_at is null')}
 
   def to_partial_name
     return nil unless subject

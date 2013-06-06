@@ -11,8 +11,8 @@ class Nomination < ActiveRecord::Base
     end
   end
 
-  scope :elected, with_state(:elected)
-  scope :defeated, with_state(:defeated)
+  scope :elected, lambda{with_state(:elected)}
+  scope :defeated, lambda{with_state(:defeated)}
 
   belongs_to :nominee, :class_name => 'Member'
 

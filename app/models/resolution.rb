@@ -17,8 +17,8 @@ class Resolution < Proposal
 
   belongs_to :meeting
 
-  scope :attached, with_state(:attached)
-  scope :paused,   with_state(:paused)
+  scope :attached, lambda{with_state(:attached)}
+  scope :paused,   lambda{with_state(:paused)}
 
   attr_accessor :certification, :attached, :passed, :open
 

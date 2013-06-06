@@ -16,7 +16,7 @@ class ShareTransaction < ActiveRecord::Base
 
   validates_presence_of :from_account, :to_account, :amount
 
-  scope :pending, with_state(:pending)
+  scope :pending, lambda{with_state(:pending)}
 
   def adjust_accounts
     transaction do

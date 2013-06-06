@@ -68,14 +68,14 @@ class Member < ActiveRecord::Base
 
   has_one :share_account, :as => :owner
 
-  scope :active, with_state(:active)
-  scope :inactive, with_state(:inactive)
-  scope :pending, with_state(:pending)
-  scope :active_and_pending, with_states(:active, :pending)
+  scope :active, lambda{with_state(:active)}
+  scope :inactive, lambda{with_state(:inactive)}
+  scope :pending, lambda{with_state(:pending)}
+  scope :active_and_pending, lambda{with_states(:active, :pending)}
 
-  scope :founders, lambda {|org| { :conditions => { :member_class_id => org.member_classes.where(:name => 'Founder').first } } }
-  scope :founding_members, lambda {|org| { :conditions => { :member_class_id => org.member_classes.where(:name => 'Founding Member').first } } }
-  scope :founder_members, lambda {|org| { :conditions => { :member_class_id => org.member_classes.where(:name => 'Founder Member').first } } }
+  scope :founders, lambda {|org| where(:member_class_id => org.member_classes.where(:name => 'Founder').first)}
+  scope :founding_members, lambda {|org| where(:member_class_id => org.member_classes.where(:name => 'Founding Member').first)}
+  scope :founder_members, lambda {|org| where(:member_class_id => org.member_classes.where(:name => 'Founder Member').first)}
 
   validates_presence_of :first_name, :last_name, :email
 
