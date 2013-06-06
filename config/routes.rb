@@ -72,8 +72,8 @@ OneClickOrgs::Application.routes.draw do
     resources :comments
   end
   # TODO Don't want this global matching if possible:
-  match '/proposals(/:action)' => 'proposals'
-
+  # match '/proposals(/:action)' => 'proposals'
+  
   resources :add_member_proposals
   resources :eject_member_proposals
   resources :change_member_class_proposals
@@ -145,7 +145,7 @@ OneClickOrgs::Application.routes.draw do
     resources :ballots
   end
 
-  match '/one_click(/:action)' => 'one_click'
+  get '/one_click(/:action)' => 'one_click'
 
   get '/login' => 'member_sessions#new', :as => 'login'
   get '/logout' => 'member_sessions#destroy', :as => 'logout'
@@ -155,9 +155,9 @@ OneClickOrgs::Application.routes.draw do
   get '/admin/logout' => 'administrator_sessions#destroy', :as => 'admin_logout'
   resource :administrator_session, :only => [:new, :create, :destroy]
 
-  match '/welcome(/:action)' => 'welcome'
+  match '/welcome(/:action)' => 'welcome', :via => [:get, :post]
 
-  match '/setup(/:action)' => 'setup'
+  match '/setup(/:action)' => 'setup', :via => [:get, :post]
 
   resources :organisations
   resources :associations
@@ -238,7 +238,7 @@ OneClickOrgs::Application.routes.draw do
   resources :password_resets
 
   post '/system/test_email' => 'system#test_email'
-  match '/system/test_exception_notification' => 'system#test_exception_notification'
+  get '/system/test_exception_notification' => 'system#test_exception_notification'
 
   get '/checklist' => 'one_click#checklist', :as => 'checklist'
 
