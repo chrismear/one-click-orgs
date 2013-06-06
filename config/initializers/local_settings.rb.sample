@@ -17,7 +17,9 @@ OneClickOrgs::Application.configure do
   #   bundle exec rake secret
   
   config.secret_token = 'YOUR_SECRET_HERE'
-  
+
+  # TODO Upgrade to Rails 4's encrypted cookies using config.secret_key_base
+
   config.session_store :cookie_store, :key => '_oneclickorgs_v2_session', :domain => :all, :tld_length => 2
   
   # Use the database for sessions instead of the cookie-based default,
