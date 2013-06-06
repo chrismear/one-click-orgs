@@ -25,6 +25,14 @@ GIT
     meekster (0.0.1)
 
 GIT
+  remote: git://github.com/rails/protected_attributes.git
+  revision: e225e7c864fd012a634fbb799c9ebba0e50c0cb5
+  ref: e225e7c864fd012a634fbb799c9ebba0e50c0cb5
+  specs:
+    protected_attributes (1.0.1)
+      activemodel (>= 4.0.0.beta, < 5.0)
+
+GIT
   remote: https://github.com/oneclickorgs/rticles.git
   revision: e54cd98d2e706ec0de99a1b835dd80f4727235e9
   branch: master
@@ -177,8 +185,6 @@ GEM
     prawn (0.12.0)
       pdf-reader (>= 0.9.0)
       ttfunk (~> 1.0.2)
-    protected_attributes (1.0.3)
-      activemodel (>= 4.0.0, < 5.0)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -316,7 +322,7 @@ DEPENDENCIES
   pdf-reader
   pdf_form_filler (~> 0.0.3)
   pdfkit (~> 0.5.2)
-  protected_attributes
+  protected_attributes!
   pry
   railroad
   rails (= 4.0.0)

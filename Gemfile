@@ -50,8 +50,13 @@ gem "nokogiri"
 gem 'mail', '~>2.5.4'
 
 # TODO Instead of using attr_accessible, use Rails 4's 'Strong Parameters',
-# and then remove this gem.
-gem 'protected_attributes'
+# and then remove 'protected_attributes' gem.
+
+# We need this commit (which isn't in 1.0.1), to get a fix for state_machine not being
+# able to set its 'initial' state.
+# https://github.com/pluginaweek/state_machine/issues/235
+gem 'protected_attributes', :git => 'git://github.com/rails/protected_attributes.git',
+  :ref => 'e225e7c864fd012a634fbb799c9ebba0e50c0cb5'
 
 # TODO Replace observers with whatever Rails 4 expects us to use instead.
 gem 'rails-observers'
