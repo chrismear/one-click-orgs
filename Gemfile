@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem "bundler", "~>1.5.2"
 
-gem "rails", "3.2.17"
+gem "rails", "4.0.0"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,13 +25,9 @@ gem "mysql2", "~>0.3.11"
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails', '~>3.2.5'
-  gem 'uglifier', '~>2.4.0'
-  gem 'therubyracer', '~>0.11.2'
-end
+gem 'sass-rails', '~>4.0.1'
+gem 'uglifier', '~>2.4.0'
+gem 'therubyracer'
 
 gem "jquery-rails", "~>3.0.4"
 gem "jquery-ui-rails", "~>3.0.1"
@@ -52,6 +48,10 @@ gem 'rticles', :git => "https://github.com/oneclickorgs/rticles.git", :branch =>
 gem 'acts_as_list', "<0.3" # version 0.3 breaks Ruby 1.8 support
 gem "nokogiri"
 gem 'mail', '~>2.5.4'
+
+# TODO Instead of using attr_accessible, use Rails 4's 'Strong Parameters',
+# and then remove this gem.
+gem 'protected_attributes'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
