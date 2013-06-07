@@ -12,6 +12,7 @@
 require 'rspec/rails/view_rendering'
 require 'one_click_orgs/organisation_resolver'
 require 'action_view/path_set'
+require 'app/controllers/application_controller'
 
 class ApplicationController < ActionController::Base
   def install_organisation_resolver_with_rspec_workaround(organisation)
