@@ -8,6 +8,8 @@ describe OcoMailer do
     def notification(organisation_name="My Organisation")
       create_mail(organisation_name, 'bob@example.com', "Example subject")
     end
+
+    prepend_view_path(File.expand_path('../views', __FILE__))
   end
 
   it "sets the 'From' name to 'One Click Orgs'" do
