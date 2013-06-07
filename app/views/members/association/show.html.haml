@@ -35,7 +35,7 @@
     - for event in @member_presenter.timeline
       %tr{:class => cycle('odd', 'even')}
         = render :partial => "one_click/#{event[:kind]}", :locals => {:event => event}
-        %td.timestamp= event[:timestamp].to_s(:long)
+        %td.timestamp= (event[:timestamp] ? event[:timestamp].to_s(:long) : '')
 
 
 - if !(current_user == @member) and !current_organisation.proposed?

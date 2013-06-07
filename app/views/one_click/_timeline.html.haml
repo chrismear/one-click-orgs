@@ -7,4 +7,4 @@
     - for event in timeline
       %tr{:class => cycle('odd', 'even')}
         = render :partial => event[:kind].to_s, :locals => {:event => event}
-        %td.timestamp= event[:timestamp].to_s(:long)
+        %td.timestamp= (event[:timestamp] ? event[:timestamp].to_s(:long) : '')
