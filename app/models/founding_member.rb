@@ -4,5 +4,7 @@
 # It does not do anything beyond this (for example, it does not set the member class
 # automatically.)
 class FoundingMember < Member
-  @abstract_class = true
+  def self.sti_name
+    'Member'
+  end
 end

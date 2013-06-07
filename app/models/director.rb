@@ -3,7 +3,9 @@
 # 
 # Adds some director-specific validation
 class Director < Member
-  @abstract_class = true
+  def self.sti_name
+    'Member'
+  end
   
   attr_accessible :certification, :elected_on, :stood_down_on, :age_certification
   
