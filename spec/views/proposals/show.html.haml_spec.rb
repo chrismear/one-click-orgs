@@ -23,7 +23,7 @@ describe "proposals/show" do
     assign(:comment, @comment)
     
     stub_template 'proposals/_description' => "description"
-    stub_template 'proposals/_vote_count' => "vote count"
+    stub_template 'proposals/_vote_count.html.haml' => "vote count"
   end
   
   it "escapes HTML in the comments" do
