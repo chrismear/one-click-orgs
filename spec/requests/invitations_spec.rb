@@ -19,7 +19,7 @@ describe "invitations" do
     it "renders a form to update the invitation" do
       get_edit
       response.should have_selector :form, :action => "/invitations/#{@member.invitation_code}" do |form|
-        form.should have_selector :input, :name => '_method', :value => 'put'
+        form.should have_selector :input, :name => '_method', :value => 'patch'
       end
     end
     
