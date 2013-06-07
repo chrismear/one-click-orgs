@@ -22,7 +22,7 @@ protected
   end
 
   def clear_tasks(share_transaction)
-    Task.where(:subject_type => 'ShareTransaction', :subject_id => share_transaction.id).all.each do |task|
+    Task.where(:subject_type => 'ShareTransaction', :subject_id => share_transaction.id).to_a.each do |task|
       task.complete!
     end
   end

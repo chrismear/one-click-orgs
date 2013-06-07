@@ -8,8 +8,8 @@ class MemberPresenter
   def timeline
     @timeline ||= [
       @member,
-      @member.proposals.all,
-      @member.votes.all
+      @member.proposals.to_a,
+      @member.votes.to_a
     ].flatten.map(&:to_event).compact.sort{|a, b| b[:timestamp] <=> a[:timestamp]}
   end
 end

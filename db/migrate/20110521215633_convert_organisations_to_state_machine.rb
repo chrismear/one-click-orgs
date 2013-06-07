@@ -5,7 +5,7 @@ class ConvertOrganisationsToStateMachine < ActiveRecord::Migration
   def self.up
     add_column :organisations, :state, :string
     
-    Organisation.all.each do |organisation|
+    Organisation.to_a.each do |organisation|
       state_clause = Clause.where(
         :organisation_id => organisation.id,
         :name => 'organisation_state',
@@ -23,7 +23,7 @@ class ConvertOrganisationsToStateMachine < ActiveRecord::Migration
   end
 
   def self.down
-    Organisation.all.each do |organisation|
+    Organisation.to_a.each do |organisation|
       state_clause = Clause.where(
         :organisation_id => organisation.id,
         :name => 'organisation_state',

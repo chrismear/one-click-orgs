@@ -8,7 +8,7 @@ Given(/^there are some members$/) do
 end
 
 Then(/^I should see a list of all the users$/) do
-  members = Member.all
+  members = Member.to_a
   members.each do |member|
     expect(page).to have_content(member.name)
     expect(page).to have_content(member.email)

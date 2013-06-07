@@ -13,6 +13,6 @@
 - else
   %p
     = form.label(:class)
-    = form.collection_select(:member_class_id, co.member_classes.all, :id, :name)
+    = form.collection_select(:member_class_id, co.member_classes, :id, :name)
 %p
   = submit_tag "Invite member", :id => 'submit'

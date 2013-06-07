@@ -4,7 +4,7 @@ class ConvertMembersToStateMachine < ActiveRecord::Migration
   def self.up
     add_column :members, :state, :string
     
-    Member.all.each do |member|
+    Member.to_a.each do |member|
       if member.active == 0
         member.state = 'inactive'
       elsif member.inducted_at.nil?
@@ -24,7 +24,7 @@ class ConvertMembersToStateMachine < ActiveRecord::Migration
   def self.down
     add_column :members, :active, :integer, :limit => 1, :default => 1
     
-    Member.all.each do |member|
+    Member.to_a.each do |member|
       if member.state == 'inactive'
         member.active = 0
       else

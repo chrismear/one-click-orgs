@@ -17,13 +17,13 @@ class CoopMailerObserver < ActiveRecord::Observer
 private
 
   def send_created_notification(coop)
-    Administrator.all.each do |administrator|
+    Administrator.to_a.each do |administrator|
       CoopMailer.notify_creation(administrator, coop).deliver
     end
   end
 
   def send_proposed_notification(coop)
-    Administrator.all.each do |administrator|
+    Administrator.to_a.each do |administrator|
       CoopMailer.notify_proposed(administrator, coop).deliver
     end
   end

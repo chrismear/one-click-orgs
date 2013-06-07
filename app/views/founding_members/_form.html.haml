@@ -15,6 +15,6 @@
 -# - else
 -#   %p
 -#     = form.label(:class)
--#     = form.collection_select(:member_class_id, co.member_classes.all, :id, :name)
+-#     = form.collection_select(:member_class_id, co.member_classes.to_a, :id, :name)
 %p
   = form.submit "Send invitation", :id => 'submit'

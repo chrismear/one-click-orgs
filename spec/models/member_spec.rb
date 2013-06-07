@@ -99,9 +99,9 @@ describe Member do
 
   describe "finders" do
     it "should return only active members" do
-      @organisation.members.active.should == @organisation.members.all
+      @organisation.members.active.to_a.should == @organisation.members.to_a
       disabled = @organisation.members.make!(:state => 'inactive')
-      @organisation.members.active.should == @organisation.members.all - [disabled]
+      @organisation.members.active.to_a.should == @organisation.members.to_a - [disabled]
     end
   end
 

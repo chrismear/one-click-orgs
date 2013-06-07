@@ -271,7 +271,7 @@ and visit the site in your browser (usually at http://localhost:3000 ).
 
           # Give each member at least one share
           coop.members.reload
-          coop.members.all.each do |member|
+          coop.members.to_a.each do |member|
             st = ShareTransaction.make!(
               :to_account => member.find_or_create_share_account,
               :from_account => coop.share_account,
@@ -324,7 +324,7 @@ and visit the site in your browser (usually at http://localhost:3000 ).
 
           # Add some nominees
           election = agm.election
-          nominees = coop.members.all
+          nominees = coop.members.to_a
           nominees.reject!{|n| n.member_class.name == 'Director'}
           nominees.reject!{|n| n.member_class.name == 'Secretary'}
           nominees.delete(coop.members.find_by_email("member@example.com"))
@@ -351,7 +351,7 @@ and visit the site in your browser (usually at http://localhost:3000 ).
     desc "Move aside any 'testx' instances."
     task :archive_test_instances => :environment do
       archived = []
-      organisations = Organisation.where("subdomain LIKE 'test%'").all
+      organisations = Organisation.where("subdomain LIKE 'test%'").to_a
       organisations.each do |o|
         original_subdomain = o.subdomain
         o.subdomain = "archived-#{Time.now.utc.to_s(:number)}-#{original_subdomain}"

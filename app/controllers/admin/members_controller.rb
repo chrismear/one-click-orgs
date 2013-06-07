@@ -1,6 +1,6 @@
 class Admin::MembersController < AdminController
   def index
-    @members = Member.all
+    @members = Member.to_a
   end
 
   def edit

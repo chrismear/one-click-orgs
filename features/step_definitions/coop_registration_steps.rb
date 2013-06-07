@@ -8,7 +8,7 @@ Given(/^the requirements for registration have been fulfilled$/) do
   @organisation.registered_office_address ||= "#{Faker::Address.street_address}\n#{Faker::Address.city}\n#{Faker::Address.zip_code}"
   @organisation.objectives ||= Faker::Company.bs
 
-  @organisation.signatories = @organisation.members.all[0..2]
+  @organisation.signatories = @organisation.members.to_a[0..2]
 
   @organisation.reg_form_main_contact_name = "Bob Smith"
   @organisation.reg_form_main_contact_address = "1 Main Street\nLondon\nN1 1AA"
@@ -77,7 +77,7 @@ end
 When(/^I choose three signatories$/) do
   @coop ||= Coop.pending.last
 
-  @signatories = @coop.founder_members.all[0..2]
+  @signatories = @coop.founder_members.to_a[0..2]
 
   @signatories.each do |signatory|
     check(signatory.name)
@@ -165,7 +165,7 @@ Then(/^I should see that the registration form is done$/) do
 end
 
 Then(/^I should see the three signatories I chose$/) do
-  @signatories ||= @coop.founder_members.all[0..2]
+  @signatories ||= @coop.founder_members.to_a[0..2]
 
   @signatories.each do |signatory|
     expect(find_field(signatory.name)['checked']).to be_true

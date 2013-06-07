@@ -140,7 +140,7 @@ class Resolution < Proposal
   def self.run_daily_job
     # Consider Resolutions that are attached to a meeting and also open for electronic voting.
     # If the meeting is happening today, we pause electronic voting.
-    currently_open.where('meeting_id IS NOT NULL').all.each do |resolution|
+    currently_open.where('meeting_id IS NOT NULL').to_a.each do |resolution|
       if resolution.meeting && resolution.meeting.happened_on == Time.now.utc.to_date
         resolution.pause!
       end

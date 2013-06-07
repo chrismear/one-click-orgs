@@ -1,6 +1,6 @@
 class AddDirectorPermissionToDirectors < ActiveRecord::Migration
   def self.up
-    Company.all.each do |company|
+    Company.to_a.each do |company|
       company.clauses.create!(
         :name => 'permission_director_director',
         :started_at => Time.now.utc,

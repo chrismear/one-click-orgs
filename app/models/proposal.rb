@@ -40,7 +40,7 @@ class Proposal < ActiveRecord::Base
   # FINDERS
 
   def self.find_closeable_early_proposals
-    currently_open.all.select { |p| p.voting_system.can_be_closed_early?(p) }
+    currently_open.to_a.select { |p| p.voting_system.can_be_closed_early?(p) }
   end
 
   def self.close_early_proposals
@@ -50,7 +50,7 @@ class Proposal < ActiveRecord::Base
   # CLASS METHODS
 
   def self.close_due_proposals
-    where(["close_date < ? AND state = 'open'", Time.now.utc]).all.each { |p| p.close! }
+    where(["close_date < ? AND state = 'open'", Time.now.utc]).each { |p| p.close! }
   end
 
   def self.close_early_proposals

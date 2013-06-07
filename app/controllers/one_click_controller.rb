@@ -19,19 +19,19 @@ class OneClickController < ApplicationController
       @add_member_proposal = co.add_member_proposals.build
 
       @timeline = [
-        co.members.all,
-        co.proposals.all,
-        co.decisions.all,
-        co.resignations.all
+        co.members.to_a,
+        co.proposals.to_a,
+        co.decisions.to_a,
+        co.resignations.to_a
       ].flatten.map(&:to_event).compact.sort{|a, b| b[:timestamp] <=> a[:timestamp]}
     when Company
       @proposals = co.proposals.currently_open
       @meeting = Meeting.new
       @directors = co.members.where(:member_class_id => co.member_classes.find_by_name('Director').id)
       @timeline = [
-        co.proposals.all,
-        co.decisions.all,
-        co.meetings.all
+        co.proposals.to_a,
+        co.decisions.to_a,
+        co.meetings.to_a
       ].flatten.map(&:to_event).compact.sort{|a, b| b[:timestamp] <=> a[:timestamp]}
     when Coop
       unless co.active?
