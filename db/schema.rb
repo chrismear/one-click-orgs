@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140112175011) do
     t.datetime "ended_at"
     t.text     "text_value"
     t.integer  "integer_value"
-    t.integer  "boolean_value",   limit: 1
+    t.boolean  "boolean_value"
     t.integer  "organisation_id"
     t.decimal  "decimal_value",                precision: 10, scale: 5
   end

@@ -19,7 +19,7 @@ class Clause < ActiveRecord::Base
   validates_presence_of :name
   # TODO: validate presence of exactly one of the value columns
   validate(:on => :create) do |c|
-    if [c.boolean_value, c.integer_value, c.text_value, c.decimal_value].all?(&:nil?)
+    if c.boolean_value.nil? && c.integer_value.blank? && c.text_value.blank? && c.decimal_value.blank?
       errors.add('One of boolean_value, integer_value or text_value', 'cannot be empty')
     end
   end
@@ -64,7 +64,10 @@ class Clause < ActiveRecord::Base
   end
 
   def self.set_boolean!(name, value)
-    create!(:name => name.to_s, :boolean_value => value)
+    clause = new(:name => name.to_s)
+    clause.boolean_value = value
+    clause.save!
+    clause
   end
 
   def self.get_boolean(name)
