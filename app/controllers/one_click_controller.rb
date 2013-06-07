@@ -23,7 +23,7 @@ class OneClickController < ApplicationController
         co.proposals.to_a,
         co.decisions.to_a,
         co.resignations.to_a
-      ].flatten.map(&:to_event).compact.sort{|a, b| b[:timestamp] <=> a[:timestamp]}
+      ].flatten.select(&:persisted?).map(&:to_event).compact.sort{|a, b| b[:timestamp] <=> a[:timestamp]}
     when Company
       @proposals = co.proposals.currently_open
       @meeting = Meeting.new
@@ -32,7 +32,7 @@ class OneClickController < ApplicationController
         co.proposals.to_a,
         co.decisions.to_a,
         co.meetings.to_a
-      ].flatten.map(&:to_event).compact.sort{|a, b| b[:timestamp] <=> a[:timestamp]}
+      ].flatten.select(&:persisted?).map(&:to_event).compact.sort{|a, b| b[:timestamp] <=> a[:timestamp]}
     when Coop
       unless co.active?
         redirect_to checklist_path
