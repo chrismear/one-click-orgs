@@ -110,8 +110,8 @@ OneClickOrgs::Application.routes.draw do
       get :confirm_eject
       put :eject
 
-      put :confirm_resign
-      put :resign
+      patch :confirm_resign
+      patch :resign
 
       put :induct
     end

@@ -26,6 +26,6 @@
 
 %hr
 
-= form_for(@member, :url => confirm_resign_member_path(@member), :html => { :class => 'member resign', :method => :put }) do |f|
+= form_for(@member, :url => confirm_resign_member_path(@member), :html => { :class => 'member resign', :method => :patch }) do |f|
   %p
     = submit_tag "Resign", :id => 'submit'
