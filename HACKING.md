@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* Ruby 1.9.3 (recommended). 2.0.0 is also supported.
+* Ruby 1.9.3 (recommended) or 2.0.0.
 * RubyGems 1.3.7 or higher
 * Bundler 1.3 or higher  (install with `gem install bundler`)
 * MySQL, including client libraries (e.g. libmysqlclient-dev on Debian)
