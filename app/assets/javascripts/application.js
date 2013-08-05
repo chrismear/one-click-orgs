@@ -46,7 +46,33 @@ OneClickOrgs.trackAnalyticsEvent = function (eventName) {
   }
 }
 
+OneClickOrgs.throwErrorMessage = function(message)
+{
+  throw message;
+}
+
+OneClickOrgs.console = {
+  log: function(message)
+  {
+    setTimeout(OneClickOrgs.throwErrorMessage, 0, message);
+  },
+  warn: function(message)
+  {
+    setTimeout(OneClickOrgs.throwErrorMessage, 0, message);
+  },
+  trace: function()
+  {
+    var stackTrace = printStackTrace();
+    var message = stackTrace.join(', ');
+    setTimeout(OneClickOrgs.throwErrorMessage, 0, message);
+  }
+};
+
 $(document).ready(function () {
+  if (true) {
+    window.console = OneClickOrgs.console;
+  }
+
   // Revealed forms
   // If JavaScript is disabled, they all show by default
   $('.form-to-hide').hide();
