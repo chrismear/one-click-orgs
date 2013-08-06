@@ -28,7 +28,7 @@ class rbenv {
   }
   
   exec {'set_default_ruby':
-    command => '/home/vagrant/.rbenv/bin/rbenv global 1.9.2-p290',
+    command => '/home/vagrant/.rbenv/bin/rbenv global 1.9.3-p448',
     require => Exec['rbenv_rehash'],
     refreshonly => true,
   }

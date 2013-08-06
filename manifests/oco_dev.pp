@@ -32,7 +32,7 @@ class app_setup {
   require gem_ext_dependencies
   
   Exec {
-    path => ['/home/vagrant/.rbenv/versions/1.9.2-p290/bin', '/usr/local/bin', '/usr/bin', '/bin'],
+    path => ['/home/vagrant/.rbenv/versions/1.9.3-p448/bin', '/usr/local/bin', '/usr/bin', '/bin'],
     logoutput => true,
     cwd => '/vagrant',
   }
