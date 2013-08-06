@@ -54,7 +54,7 @@ class app_setup {
     # Since this resource may be run again when a database already exists,
     # we use db:create + db:migrate instead of db:setup.
     command => 'bundle exec rake db:create db:migrate',
-    require => [Exec['generate_config'], Service['mysqld']],
+    require => [Exec['generate_config'], Service['mysql']],
     timeout => 6000,
   }
 }
