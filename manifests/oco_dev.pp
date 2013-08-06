@@ -38,7 +38,12 @@ class app_setup {
   }
   
   exec {'bundle_install':
-    command => 'bundle install --system',
+    # Install to a specified path so that the config gets writtent o
+    # /vagrant/.bundle/config, allowing Passenger to find gems installed
+    # by Bundler using git:
+    # 
+    # http://stackoverflow.com/questions/3605235/rails-3-passenger-cant-find-git-gems-installed-by-bundler
+    command => 'bundle install --path /home/vagrant/bundle',
     timeout => 6000,
     require => Exec['update_rubygems'],
     unless => 'bundle check',
