@@ -27,16 +27,16 @@ class clone_app {
   }
   
   exec {'save_dot_vagrant':
-    command => 'cp /vagrant/.vagrant /home/vagrant/dot_vagrant',
+    command => 'cp -a /vagrant/.vagrant /home/vagrant/dot_vagrant',
     before => Exec['git_clone'],
   }
   
   exec {'git_clone':
-    command => 'rm -f /vagrant/.vagrant && rm -rf /vagrant/* && git clone -b vagrant git://github.com/chrismear/one-click-orgs.git /vagrant',
+    command => 'rm -rf /vagrant/.vagrant && rm -rf /vagrant/* && git clone -b vagrant git://github.com/chrismear/one-click-orgs.git /vagrant',
   }
   
   exec {'restore_dot_vagrant':
-    command => 'cp /home/vagrant/dot_vagrant /vagrant/.vagrant',
+    command => 'cp -a /home/vagrant/dot_vagrant /vagrant/.vagrant',
     require => Exec['git_clone'],
   }
 }
