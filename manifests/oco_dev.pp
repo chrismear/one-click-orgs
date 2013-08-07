@@ -30,6 +30,9 @@ class app_setup {
   
   require bundler
   require gem_ext_dependencies
+
+  require xvfb
+  require firefox
   
   Exec {
     path => ['/home/vagrant/.rbenv/versions/1.9.3-p448/bin', '/usr/local/bin', '/usr/bin', '/bin'],
