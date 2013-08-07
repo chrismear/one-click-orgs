@@ -33,6 +33,8 @@ class app_setup {
 
   require xvfb
   require firefox
+
+  require wkhtmltopdf
   
   Exec {
     path => ['/home/vagrant/.rbenv/versions/1.9.3-p448/bin', '/usr/local/bin', '/usr/bin', '/bin'],
