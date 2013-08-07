@@ -1,14 +1,17 @@
 Bootstrap a One Click Orgs development environment.
 
-1. Install VirtualBox, version 4.0.12.
-2. Install Ruby (1.9.2 or 1.8.7, doesn't really matter since we're only using it to bootstrap your environment).
+1. Install VirtualBox, version 4.2.16 or later.
+2. Install Vagrant, version 1.2.7 or later.
 3. Download bootstrap.rb to a new directory:
     https://raw.github.com/chrismear/one-click-orgs/bootstrap/bootstrap.rb
 4. From the new directory run:
     ruby bootstrap.rb
 
 VirtualBox:
-http://www.virtualbox.org/wiki/Download_Old_Builds_4_0
+https://www.virtualbox.org
+
+Vagrant:
+http://www.vagrantup.com
 
 Ruby:
   Windows:

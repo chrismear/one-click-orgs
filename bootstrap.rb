@@ -29,10 +29,13 @@ BOOTSTRAP_BASE_URL = "https://raw.github.com/chrismear/one-click-orgs/bootstrap"
 
 INSTALL_DIRECTORY = ARGV[0] || 'one-click-orgs'
 
-VAGRANT_VERSION = "0.9.7"
+VAGRANT_VERSION = "1.2.7"
 
 # TODO Display usage instructions.
 # TODO Check for presence of dependencies (VirtualBox)
+
+# It also includes its own Ruby, so can we use that instead of
+# requiring the user to install their own Ruby?
 
 msg "Bootstrapping into #{INSTALL_DIRECTORY}."
 
@@ -62,16 +65,11 @@ unless vagrant
 end
 
 unless vagrant
-  msg "Vagrant not found. Installing Vagrant..."
-  install_succeeded = system "gem install -v #{VAGRANT_VERSION} vagrant"
-  unless install_succeeded
-    install_succeeded = system "sudo gem install -v #{VAGRANT_VERSION} vagrant"
-  end
-  unless install_succeeded
-    msg "Error installing Vagrant."
-    exit(false)
-  end
+  msg "Vagrant not found."
+  # TODO Output installation instructions.
+  exit(false)
 end
+
 msg "Done."
 
 msg "Fetching bootstrap VM config..."
