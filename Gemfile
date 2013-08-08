@@ -48,7 +48,6 @@ gem "cancan", "~>1.6.7"
 gem "state_machine", "~>1.2.0"
 gem "nokogiri"
 gem 'mail', '~>2.5.4'
-gem "jruby-openssl", :platforms => :jruby
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
